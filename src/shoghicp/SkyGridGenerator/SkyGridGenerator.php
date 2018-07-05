@@ -2,15 +2,15 @@
 
 namespace shoghicp\SkyGridGenerator;
 
-use pocketmine\level\generator\Generator;
+use pocketmine\block\Block;
 use pocketmine\level\generator\GenerationChunkManager;
+use pocketmine\level\generator\Generator;
 use pocketmine\math\Vector3;
 use pocketmine\utils\Random;
-use pocketmine\block\Block;
 
 class SkyGridGenerator extends Generator{
 	private $normalp, $level, $options, $random, $floatSeed, $total, $cump, $gridlength;
-	
+
 	public function pickBlock($size){
 		$r = $this->random->nextFloat() * $size;
 		foreach($this->cump as $key => $value){
@@ -19,7 +19,7 @@ class SkyGridGenerator extends Generator{
 			}
 		}
 	}
-	
+
 	public function getSettings(){
 		return $this->options;
 	}
@@ -27,7 +27,7 @@ class SkyGridGenerator extends Generator{
 	public function getName(){
 		return "skygrid";
 	}
-	
+
 	public function __construct(array $options = []){
 		$this->gridlength = 4;
 		$this->options = $options;
@@ -73,30 +73,30 @@ class SkyGridGenerator extends Generator{
 			Block::MYCELIUM => 15
 		];
 	}
-	
+
 	public function init(GenerationChunkManager $level, Random $random){
 		$this->level = $level;
 		$this->random = $random;
 		$this->floatSeed = $this->random->nextFloat();
 		$this->total = 0;
 		$this->cump = [];
-		
+
 		foreach($this->normalp as $key => $value){
 			$this->cump[$key] = [$this->total, $this->total + $value];
 			$this->total += $value;
 		}
 	}
-		
+
 	public function generateChunk($chunkX, $chunkZ){
 		$this->random->setSeed((int) (($chunkX * 0xdead + $chunkZ * 0xbeef) * $this->floatSeed));
-		
+
 		$chunk = $this->level->getChunk($chunkX, $chunkZ);
-		
+
 		for($y = 0; $y < 128; $y += $this->gridlength){
 			for($z = 0; $z < 16; $z += $this->gridlength){
 				for($x = 0; $x < 16; $x += $this->gridlength){
 					$blockId = $this->pickBlock($this->total);
-										
+
 					if($blockId === Block::WOOL){
 						$chunk->setBlockId($x, $y, $z, $blockId);
 						$chunk->setBlockData($x, $y, $z, $this->random->nextInt() & 0xf);
@@ -116,11 +116,11 @@ class SkyGridGenerator extends Generator{
 			}
 		}
 	}
-	
+
 	public function populateChunk($chunkX, $chunkZ){
 
 	}
-	
+
 	public function getSpawn(){
 		return new Vector3(128.5, 64, 128.5);
 	}
