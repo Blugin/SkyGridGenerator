@@ -9,7 +9,29 @@ use pocketmine\math\Vector3;
 use pocketmine\utils\Random;
 
 class SkyGridGenerator extends Generator{
-	private $normalp, $level, $options, $random, $floatSeed, $total, $cump, $gridlength;
+	/** @var int[] */
+	private $normalp;
+
+	/** @var ChunkManager */
+	private $level;
+
+	/** @var array */
+	private $options;
+
+	/** @var Random */
+	private $random;
+
+	/** @var float */
+	private $floatSeed;
+
+	/** @var int */
+	private $total;
+
+	/** @var array[] */
+	private $cump;
+
+	/** @var int */
+	private $gridlength;
 
 	public function pickBlock($size){
 		$r = $this->random->nextFloat() * $size;
