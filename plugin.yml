@@ -2,7 +2,7 @@
 name: SkyGridGenerator
 main: shoghicp\SkyGridGenerator\Plugin
 version: 1.0.0
-api: [3.0.0, 3.0.0-ALPHA10]
+api: [3.0.0, 3.0.0-ALPHA10, 4.0.0]
 author: shoghicp
 website: https://github.com/Blugin/SkyGridGenerator-PMMP
 load: STARTUP
