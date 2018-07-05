@@ -3,7 +3,7 @@
 namespace shoghicp\SkyGridGenerator;
 
 use pocketmine\block\Block;
-use pocketmine\level\generator\GenerationChunkManager;
+use pocketmine\level\ChunkManager;
 use pocketmine\level\generator\Generator;
 use pocketmine\math\Vector3;
 use pocketmine\utils\Random;
@@ -20,11 +20,11 @@ class SkyGridGenerator extends Generator{
 		}
 	}
 
-	public function getSettings(){
+	public function getSettings() : array{
 		return $this->options;
 	}
 
-	public function getName(){
+	public function getName() : string{
 		return "skygrid";
 	}
 
@@ -74,7 +74,7 @@ class SkyGridGenerator extends Generator{
 		];
 	}
 
-	public function init(GenerationChunkManager $level, Random $random){
+	public function init(ChunkManager $level, Random $random) : void{
 		$this->level = $level;
 		$this->random = $random;
 		$this->floatSeed = $this->random->nextFloat();
@@ -87,7 +87,7 @@ class SkyGridGenerator extends Generator{
 		}
 	}
 
-	public function generateChunk($chunkX, $chunkZ){
+	public function generateChunk(int $chunkX, int $chunkZ) : void{
 		$this->random->setSeed((int) (($chunkX * 0xdead + $chunkZ * 0xbeef) * $this->floatSeed));
 
 		$chunk = $this->level->getChunk($chunkX, $chunkZ);
@@ -117,11 +117,11 @@ class SkyGridGenerator extends Generator{
 		}
 	}
 
-	public function populateChunk($chunkX, $chunkZ){
+	public function populateChunk($chunkX, $chunkZ) : void{
 
 	}
 
-	public function getSpawn(){
+	public function getSpawn() : Vector3{
 		return new Vector3(128.5, 64, 128.5);
 	}
 }
