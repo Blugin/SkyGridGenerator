@@ -161,9 +161,6 @@ class SkyGridGenerator extends Generator{
 						if($blockId === 83){
 							$chunk->setBlockId($x + 1, $y, $z, 9);
 						}
-					}elseif($blockId === 83){
-						$chunk->setBlockId($x, $y, $z, 12);
-						$chunk->setBlockId($x, $y + 1, $z, $blockId);
 					}else{
 						$chunk->setBlockId($x, $y, $z, $blockId);
 					}
