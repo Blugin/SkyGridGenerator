@@ -147,19 +147,19 @@ class SkyGridGenerator extends Generator{
 						$chunk->setBlockId($x, $y, $z, $blockId);
 						$chunk->setBlockData($x, $y, $z, $this->random->nextInt() & 0xf);
 					}elseif(in_array($blockId, [
-						6,
-						31,
-						32,
-						37,
-						38,
-						39,
-						40,
-						83
+						Block::SAPLING,
+						Block::TALL_GRASS,
+						Block::DEAD_BUSH,
+						Block::YELLOW_FLOWER,
+						Block::RED_FLOWER,
+						Block::BROWN_MUSHROOM,
+						Block::RED_MUSHROOM,
+						Block::SUGARCANE_BLOCK
 					])){
-						$chunk->setBlockId($x, $y, $z, 3);
+						$chunk->setBlockId($x, $y, $z, Block::DIRT);
 						$chunk->setBlockId($x, $y + 1, $z, $blockId);
-						if($blockId === 83){
-							$chunk->setBlockId($x + 1, $y, $z, 9);
+						if($blockId === Block::SUGARCANE_BLOCK){
+							$chunk->setBlockId($x + 1, $y, $z, Block::WATER);
 						}
 					}else{
 						$chunk->setBlockId($x, $y, $z, $blockId);
