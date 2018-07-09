@@ -146,7 +146,16 @@ class SkyGridGenerator extends Generator{
 					if($blockId === Block::WOOL){
 						$chunk->setBlockId($x, $y, $z, $blockId);
 						$chunk->setBlockData($x, $y, $z, $this->random->nextInt() & 0xf);
-					}elseif($blockId === 6 or $blockId === 31 or $blockId === 32 or $blockId === 37 or $blockId === 38 or $blockId === 39 or $blockId === 40 or $blockId === 83){
+					}elseif(in_array($blockId, [
+						6,
+						31,
+						32,
+						37,
+						38,
+						39,
+						40,
+						83
+					])){
 						$chunk->setBlockId($x, $y, $z, 3);
 						$chunk->setBlockId($x, $y + 1, $z, $blockId);
 						if($blockId === 83){
