@@ -10,35 +10,35 @@ use pocketmine\utils\Random;
 
 class SkyGridGenerator extends Generator{
 	/** @var int[] */
-	private $normalp;
+	protected $normalp;
 
 	/** @var ChunkManager */
-	private $level;
+	protected $level;
 
 	/** @var array */
-	private $options;
+	protected $options;
 
 	/** @var Random */
-	private $random;
+	protected $random;
 
 	/** @var float */
-	private $floatSeed;
+	protected $floatSeed;
 
 	/** @var int */
-	private $total;
+	protected $total;
 
 	/** @var array[] */
-	private $cump;
+	protected $cump;
 
 	/** @var int */
-	private $gridlength;
+	protected $gridlength;
 
 	/**
 	 * @param $size
 	 *
 	 * @return int|string
 	 */
-	public function pickBlock($size){
+	protected function pickBlock($size){
 		$r = $this->random->nextFloat() * $size;
 		foreach($this->cump as $key => $value){
 			if($r >= $value[0] and $r < $value[1]){
