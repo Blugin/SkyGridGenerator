@@ -33,6 +33,11 @@ class SkyGridGenerator extends Generator{
 	/** @var int */
 	private $gridlength;
 
+	/**
+	 * @param $size
+	 *
+	 * @return int|string
+	 */
 	public function pickBlock($size){
 		$r = $this->random->nextFloat() * $size;
 		foreach($this->cump as $key => $value){
@@ -42,14 +47,25 @@ class SkyGridGenerator extends Generator{
 		}
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getSettings() : array{
 		return $this->options;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "skygrid";
 	}
 
+	/**
+	 * SkyGridGenerator constructor.
+	 *
+	 * @param array $options
+	 */
 	public function __construct(array $options = []){
 		$this->gridlength = 4;
 		$this->options = $options;
@@ -96,6 +112,10 @@ class SkyGridGenerator extends Generator{
 		];
 	}
 
+	/**
+	 * @param ChunkManager $level
+	 * @param Random       $random
+	 */
 	public function init(ChunkManager $level, Random $random) : void{
 		$this->level = $level;
 		$this->random = $random;
@@ -109,6 +129,10 @@ class SkyGridGenerator extends Generator{
 		}
 	}
 
+	/**
+	 * @param int $chunkX
+	 * @param int $chunkZ
+	 */
 	public function generateChunk(int $chunkX, int $chunkZ) : void{
 		$this->random->setSeed((int) (($chunkX * 0xdead + $chunkZ * 0xbeef) * $this->floatSeed));
 
@@ -139,10 +163,16 @@ class SkyGridGenerator extends Generator{
 		}
 	}
 
+	/**
+	 * @param int $chunkX
+	 * @param int $chunkZ
+	 */
 	public function populateChunk($chunkX, $chunkZ) : void{
-
 	}
 
+	/**
+	 * @return Vector3
+	 */
 	public function getSpawn() : Vector3{
 		return new Vector3(128.5, 64, 128.5);
 	}
