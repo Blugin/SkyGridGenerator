@@ -9,7 +9,7 @@ class Plugin extends PluginBase{
 	/**
 	 * Called when the plugin is enabled
 	 */
-	protected function onEnable() : void{
+	public function onEnable() : void{
 		GeneratorManager::addGenerator(SkyGridGenerator::class, "skygrid");
 	}
 }
